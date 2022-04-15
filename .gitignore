@@ -1,0 +1,5 @@
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+service_account.json
+plan.tfplan
