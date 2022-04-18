@@ -22,7 +22,7 @@ jobs:
         with:
           workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/automation/providers/github
           service_account: automation@automation-220928.iam.gserviceaccount.com
-      - run: terraform -chdir=src init
+      - run: terraform -chdir=src init -upgrade
       - run: terraform -chdir=src validate
       - run: terraform -chdir=src workspace new prod || terraform -chdir=src workspace select prod
       - run: terraform -chdir=src apply -var-file="prod.tfvars" -auto-approve
