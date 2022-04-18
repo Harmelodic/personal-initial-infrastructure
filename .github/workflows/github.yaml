@@ -15,10 +15,10 @@ jobs:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1
       - name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0.6.0'
+        uses: 'google-github-actions/auth@v0.7.0'
         with:
-          workload_identity_provider: projects/123456789/locations/global/workloadIdentityPools/automation-pool/providers/my-provider
-          service_account: automation@automation-12345.iam.gserviceaccount.com
+          workload_identity_provider: projects/automation-220928/locations/global/workloadIdentityPools/automation/providers/github
+          service_account: automation@automation-220928.iam.gserviceaccount.com
       - run: terraform -chdir=src init
       - run: terraform -chdir=src validate
       - run: terraform -chdir=src workspace new prod || terraform -chdir=src workspace select prod
