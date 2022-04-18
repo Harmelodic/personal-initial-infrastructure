@@ -22,3 +22,7 @@ resource "google_project_service" "host_project_apis" {
   disable_dependent_services = true
   disable_on_destroy         = true
 }
+
+resource "google_compute_shared_vpc_host_project" "host" {
+  project = google_project.host_project.project_id
+}
