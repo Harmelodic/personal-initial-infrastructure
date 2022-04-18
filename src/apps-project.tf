@@ -3,7 +3,7 @@
 #  max = 999999
 #}
 #
-#resource "google_project" "apps_project" {
+#resource "google_project" "apps" {
 #  name                = "personal-${terraform.workspace}-apps"
 #  project_id          = "personal-${terraform.workspace}-apps-${random_integer.apps_project_suffix.result}"
 #  folder_id           = google_folder.personal.id
@@ -32,5 +32,6 @@
 #
 #  disable_dependent_services = true
 #  disable_on_destroy         = true
+#  project                    = google_project.apps.project_id
 #  service                    = each.key
 #}

@@ -4,6 +4,7 @@
 #  name           = terraform.workspace
 #  node_count     = 1
 #  node_locations = var.gke_node_locations
+#  project        = google_project.apps.project_id
 #
 #  management {
 #    auto_repair  = true

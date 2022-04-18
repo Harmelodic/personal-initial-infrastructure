@@ -1,3 +1,15 @@
+#variable "gke_location" {
+#  default     = "europe-north1"
+#  description = "Location of where GKE cluster will be created"
+#  sensitive   = true
+#  type        = string
+#}
+#
+#locals {
+#  cluster_secondary_range_name  = "cluster-secondary-range"
+#  services_secondary_range_name = "services-secondary-range"
+#}
+#
 #resource "google_container_cluster" "gke_cluster" {
 #  description                 = "GKE Cluster for personal projects"
 #  enable_binary_authorization = false
@@ -10,6 +22,7 @@
 #  logging_service             = "logging.googleapis.com/kubernetes"
 #  name                        = terraform.workspace
 #  network                     = google_compute_network.gke.self_link
+#  project                     = google_project.apps.project_id
 #  remove_default_node_pool    = true
 #  subnetwork                  = google_compute_subnetwork.gke.self_link
 #
@@ -59,7 +72,7 @@
 #  }
 #
 #  workload_identity_config {
-#    identity_namespace = "${var.project_id}.svc.id.goog"
+#    identity_namespace = "${google_project.apps.project_id}.svc.id.goog"
 #  }
 #}
 #
@@ -86,16 +99,4 @@
 #    range_name    = local.services_secondary_range_name
 #    ip_cidr_range = "10.16.0.0/12"
 #  }
-#}
-#
-#locals {
-#  cluster_secondary_range_name = "cluster-secondary-range"
-#  services_secondary_range_name = "services-secondary-range"
-#}
-#
-#variable "gke_location" {
-#  default     = "europe-north1"
-#  description = "Location of where GKE cluster will be created"
-#  sensitive   = true
-#  type        = string
 #}

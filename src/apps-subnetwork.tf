@@ -1,5 +1,5 @@
 #resource "google_compute_subnetwork" "apps" {
-#  project       = google_project.apps_project.project_id
+#  project       = google_project.apps.project_id
 #  name          = "apps"
 #  description   = "Subnetwork for applications"
 #  region        = var.region
@@ -12,12 +12,12 @@
 #  }
 #
 #  secondary_ip_range {
-#    range_name    = "pod-range"
+#    range_name    = local.cluster_secondary_range_name
 #    ip_cidr_range = "10.1.0.0/16"
 #  }
 #
 #  secondary_ip_range {
-#    range_name    = "service-range"
+#    range_name    = local.services_secondary_range_name
 #    ip_cidr_range = "10.2.0.0/16"
 #  }
 #}

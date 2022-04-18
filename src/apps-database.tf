@@ -1,8 +1,23 @@
+#variable "db_tier" {
+#  default     = "db-n1-standard-1"
+#  description = "Type of DB machine"
+#  sensitive   = true
+#  type        = string
+#}
+#
+#variable "db_disk_size" {
+#  default     = 10
+#  description = "Size of DB storage in GB"
+#  sensitive   = true
+#  type        = number
+#}
+#
 #resource "google_sql_database_instance" "instance" {
 #  name                = terraform.workspace
 #  region              = var.region
 #  database_version    = "MYSQL_8_0"
 #  deletion_protection = false
+#  project             = google_project.apps.project_id
 #
 #  settings {
 #    tier      = var.db_tier
@@ -45,18 +60,4 @@
 #resource "google_sql_database" "shopping" {
 #  instance = google_sql_database_instance.instance.name
 #  name     = "shopping"
-#}
-#
-#variable "db_tier" {
-#  default     = "db-n1-standard-1"
-#  description = "Type of DB machine"
-#  sensitive   = true
-#  type        = string
-#}
-#
-#variable "db_disk_size" {
-#  default     = 10
-#  description = "Size of DB storage in GB"
-#  sensitive   = true
-#  type        = number
 #}
