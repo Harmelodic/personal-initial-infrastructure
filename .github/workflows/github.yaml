@@ -25,4 +25,4 @@ jobs:
       - run: terraform -chdir=src init
       - run: terraform -chdir=src validate
       - run: terraform -chdir=src workspace new prod || terraform -chdir=src workspace select prod
-      - run: terraform -chdir=src apply -var-file="prod.tfvars"
+      - run: terraform -chdir=src apply -var-file="prod.tfvars" -auto-approve
