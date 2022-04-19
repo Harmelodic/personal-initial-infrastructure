@@ -5,11 +5,6 @@
 #  type        = string
 #}
 #
-#locals {
-#  cluster_secondary_range_name  = "cluster-secondary-range"
-#  services_secondary_range_name = "services-secondary-range"
-#}
-#
 #resource "google_container_cluster" "gke_cluster" {
 #  description                 = "GKE Cluster for personal projects"
 #  enable_binary_authorization = false
