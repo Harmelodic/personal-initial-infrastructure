@@ -4,11 +4,11 @@ resource "random_integer" "host_project_suffix" {
 }
 
 resource "google_project" "host" {
+  auto_create_network = false
+  billing_account     = data.google_billing_account.my_billing_account.id
+  folder_id           = google_folder.personal.id
   name                = "personal-${terraform.workspace}-host"
   project_id          = "personal-${terraform.workspace}-host-${random_integer.host_project_suffix.result}"
-  folder_id           = google_folder.personal.id
-  billing_account     = data.google_billing_account.my_billing_account.id
-  auto_create_network = false
 }
 
 resource "google_project_service" "host_apis" {
@@ -17,10 +17,10 @@ resource "google_project_service" "host_apis" {
     "iam.googleapis.com", # Required for handling IAM permissions
   ])
 
-  project                    = google_project.host.id
-  service                    = each.key
   disable_dependent_services = true
   disable_on_destroy         = true
+  project                    = google_project.host.id
+  service                    = each.key
 }
 
 resource "google_compute_shared_vpc_host_project" "host" {
