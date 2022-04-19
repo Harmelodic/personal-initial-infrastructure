@@ -12,7 +12,7 @@ resource "google_compute_subnetwork" "apps" {
   ip_cidr_range            = "10.0.0.0/16"
   name                     = "apps"
   private_ip_google_access = true
-  project                  = google_project.apps.project_id
+  project                  = google_project.host.project_id
   network                  = google_compute_network.main.id
   region                   = var.region
 
