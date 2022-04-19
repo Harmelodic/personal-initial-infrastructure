@@ -22,3 +22,8 @@ resource "google_project_service" "apis" {
   project                    = google_project.apps.project_id
   service                    = each.key
 }
+
+resource "google_compute_shared_vpc_service_project" "apps" {
+  host_project    = google_project.host.project_id
+  service_project = google_project.apps.project_id
+}
