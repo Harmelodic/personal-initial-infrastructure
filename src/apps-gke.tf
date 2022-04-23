@@ -5,6 +5,10 @@ variable "apps_gke_location" {
 }
 
 resource "google_container_cluster" "apps" {
+  depends_on = [
+    google_project_service.apps_apis
+  ]
+
   description                 = "GKE Cluster for personal projects"
   enable_binary_authorization = false
   enable_intranode_visibility = false

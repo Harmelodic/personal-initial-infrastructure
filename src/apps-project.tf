@@ -11,7 +11,7 @@ resource "google_project" "apps" {
   project_id          = "personal-${terraform.workspace}-apps-${random_integer.apps_project_suffix.result}"
 }
 
-resource "google_project_service" "apis" {
+resource "google_project_service" "apps_apis" {
   for_each = toset([
     "cloudbilling.googleapis.com", # Required for hooking project to Cloud Billing
     "container.googleapis.com", # Required for using Google Kubernetes Engine
