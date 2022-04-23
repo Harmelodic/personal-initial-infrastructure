@@ -68,6 +68,6 @@ resource "google_container_cluster" "apps" {
   }
 
   workload_identity_config {
-    identity_namespace = "${google_project.apps.project_id}.svc.id.goog"
+    workload_pool = "${google_project.apps.project_id}.svc.id.goog"
   }
 }
