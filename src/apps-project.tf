@@ -14,6 +14,7 @@ resource "google_project" "apps" {
 resource "google_project_service" "apis" {
   for_each = toset([
     "cloudbilling.googleapis.com", # Required for hooking project to Cloud Billing
+    "container.googleapis.com", # Required for using Google Kubernetes Engine
     "iam.googleapis.com", # Required for handling IAM permissions
   ])
 
