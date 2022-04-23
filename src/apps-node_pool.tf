@@ -24,9 +24,14 @@ resource "google_service_account" "gke_node_pool" {
 }
 
 resource "google_project_iam_member" "gke_node_pool" {
+  for_each = toset([
+    "roles/container.serviceAgent",
+    "roles/viewer",
+  ])
+
   member  = "serviceAccount:${google_service_account.gke_node_pool.email}"
   project = google_project.apps.project_id
-  role    = "roles/viewer"
+  role    = each.key
 }
 
 resource "google_container_node_pool" "apps" {
