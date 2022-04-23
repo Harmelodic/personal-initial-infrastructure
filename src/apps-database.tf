@@ -1,11 +1,11 @@
-#variable "db_tier" {
+#variable "apps_db_tier" {
 #  default     = "db-n1-standard-1"
 #  description = "Type of DB machine"
 #  sensitive   = true
 #  type        = string
 #}
 #
-#variable "db_disk_size" {
+#variable "apps_db_disk_size" {
 #  default     = 10
 #  description = "Size of DB storage in GB"
 #  sensitive   = true
@@ -13,15 +13,15 @@
 #}
 #
 #resource "google_sql_database_instance" "instance" {
-#  name                = terraform.workspace
+#  name                = "apps"
 #  region              = var.region
 #  database_version    = "MYSQL_8_0"
 #  deletion_protection = false
 #  project             = google_project.apps.project_id
 #
 #  settings {
-#    tier      = var.db_tier
-#    disk_size = var.db_disk_size
+#    tier      = var.apps_db_tier
+#    disk_size = var.apps_db_disk_size
 #    disk_type = "PD_SSD"
 #
 #    backup_configuration {
@@ -47,17 +47,3 @@
 #  }
 #}
 #
-#resource "google_sql_database" "blog" {
-#  instance = google_sql_database_instance.instance.name
-#  name     = "blog"
-#}
-#
-#resource "google_sql_database" "scribbles" {
-#  instance = google_sql_database_instance.instance.name
-#  name     = "scribbles"
-#}
-#
-#resource "google_sql_database" "shopping" {
-#  instance = google_sql_database_instance.instance.name
-#  name     = "shopping"
-#}
