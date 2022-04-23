@@ -54,11 +54,6 @@ resource "google_container_cluster" "apps" {
     }
   }
 
-  private_cluster_config {
-    enable_private_endpoint = false
-    enable_private_nodes    = false
-  }
-
   network_policy {
     enabled = false
   }
