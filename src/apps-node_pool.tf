@@ -20,6 +20,7 @@ resource "google_service_account" "gke_node_pool" {
   account_id   = "apps-node-pool"
   description  = "The default service account for pods to use in the apps node pool"
   display_name = "Apps GKE Node Pool Service Account"
+  project      = google_project.apps.project_id
 }
 
 resource "google_project_iam_member" "gke_node_pool" {
