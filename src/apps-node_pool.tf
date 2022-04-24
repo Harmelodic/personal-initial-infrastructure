@@ -23,7 +23,7 @@ resource "google_service_account" "gke_node_pool" {
   project      = google_project.apps.project_id
 }
 
-resource "google_project_iam_member" "gke_node_pool" {
+resource "google_project_iam_member" "gke_node_pool_perms" {
   for_each = toset([
     "roles/container.serviceAgent",
     "roles/viewer",
