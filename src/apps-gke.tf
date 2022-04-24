@@ -6,7 +6,7 @@ variable "apps_gke_location" {
 
 resource "google_project_iam_member" "default_gke_service_account_perms" {
   project = google_project.apps.project_id
-  member = "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com"
+  member = "serviceAccount:service-${google_project.host.number}@container-engine-robot.iam.gserviceaccount.com"
   role   = "roles/container.serviceAgent"
 }
 
