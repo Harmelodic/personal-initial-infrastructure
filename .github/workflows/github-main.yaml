@@ -1,0 +1,25 @@
+name: CI main
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+      - name: 'Authenticate to Google Cloud'
+        uses: google-github-actions/auth@v0.7.1
+        with:
+          workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/automation/providers/github
+          service_account: automation@automation-220928.iam.gserviceaccount.com
+      - run: terraform -chdir=src init -upgrade
+      - run: terraform -chdir=src validate
+      - run: terraform -chdir=src workspace new prod || terraform -chdir=src workspace select prod
+      - run: terraform -chdir=src apply -var-file="prod.tfvars" -auto-approve
