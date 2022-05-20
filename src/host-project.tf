@@ -26,3 +26,14 @@ resource "google_project_service" "host_apis" {
 resource "google_compute_shared_vpc_host_project" "host" {
   project = google_project.host.project_id
 }
+
+resource "google_project_iam_member" "automation_host_project_perms" {
+  for_each = toset([
+    "roles/billing.projectManager",
+    "roles/editor",
+  ])
+
+  member  = "serviceAccount:${data.google_service_account.automation.email}"
+  project = google_project.host.project_id
+  role    = each.key
+}
