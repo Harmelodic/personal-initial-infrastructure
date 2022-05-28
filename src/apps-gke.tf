@@ -14,6 +14,16 @@ resource "google_project_iam_member" "gke_service_agent_perms" {
   role    = each.key
 }
 
+resource "google_project_iam_member" "gke_service_agent_host_perms" {
+  for_each = toset([
+    "roles/container.hostServiceAgentUser",
+  ])
+
+  member  = "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com"
+  project = google_project.host.project_id
+  role    = each.key
+}
+
 resource "google_container_cluster" "apps" {
   depends_on = [
     google_project_service.apps_apis,
