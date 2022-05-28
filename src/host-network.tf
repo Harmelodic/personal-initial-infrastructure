@@ -12,4 +12,5 @@ resource "google_compute_route" "main_default_internet_gateway" {
   name             = "default-internet-gateway"
   network          = google_compute_network.main.id
   next_hop_gateway = "default-internet-gateway"
+  project          = google_project.host.project_id
 }
