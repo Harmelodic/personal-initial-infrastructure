@@ -39,3 +39,14 @@ resource "google_project_iam_member" "automation_apps_project_perms" {
   project = google_project.apps.project_id
   role    = each.key
 }
+
+# Explicit Kubernetes Engine Service Agent - normally granted when enabling Kubernetes API
+resource "google_project_iam_member" "gke_service_agent_perms" {
+  for_each = toset([
+    "roles/container.serviceAgent",
+  ])
+
+  member  = "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com"
+  project = google_project.apps.project_id
+  role    = each.key
+}

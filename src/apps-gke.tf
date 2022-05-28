@@ -4,16 +4,7 @@ variable "apps_gke_location" {
   type        = string
 }
 
-resource "google_project_iam_member" "gke_service_agent_perms" {
-  for_each = toset([
-    "roles/container.serviceAgent",
-  ])
-
-  member  = "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com"
-  project = google_project.apps.project_id
-  role    = each.key
-}
-
+# Grant GKE Service Agent access to host project GKE
 resource "google_project_iam_member" "gke_service_agent_host_perms" {
   for_each = toset([
     "roles/container.hostServiceAgentUser",
