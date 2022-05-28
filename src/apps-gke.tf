@@ -8,6 +8,7 @@ variable "apps_gke_location" {
 resource "google_project_iam_member" "gke_service_agent_host_perms" {
   for_each = toset([
     "roles/container.hostServiceAgentUser",
+    "roles/compute.networkUser"
   ])
 
   member  = "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com"
