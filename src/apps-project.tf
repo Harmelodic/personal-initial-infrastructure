@@ -40,6 +40,17 @@ resource "google_project_iam_member" "automation_apps_project_perms" {
   role    = each.key
 }
 
+# Apps Compute Service Agent to access Host network, for managing GKE Nodes (Instance Group)
+resource "google_project_iam_member" "apps_service_account_perms" {
+  for_each = toset([
+    "roles/compute.networkUser"
+  ])
+
+  member  = "serviceAccount:${google_project.apps.number}@cloudservices.gserviceaccount.com"
+  project = google_project.host.project_id
+  role    = each.key
+}
+
 # Explicit Kubernetes Engine Service Agent - normally granted when enabling Kubernetes API
 resource "google_project_iam_member" "gke_service_agent_perms" {
   for_each = toset([
