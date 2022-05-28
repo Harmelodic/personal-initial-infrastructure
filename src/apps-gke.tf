@@ -4,9 +4,20 @@ variable "apps_gke_location" {
   type        = string
 }
 
+resource "google_project_iam_member" "gke_service_agent_perms" {
+  for_each = toset([
+    "roles/container.serviceAgent",
+  ])
+
+  member  = "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com"
+  project = google_project.apps.project_id
+  role    = each.key
+}
+
 resource "google_container_cluster" "apps" {
   depends_on = [
-    google_project_service.apps_apis
+    google_project_service.apps_apis,
+    google_project_iam_member.gke_service_agent_perms
   ]
 
   description                 = "GKE Cluster for personal projects"
