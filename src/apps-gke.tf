@@ -18,9 +18,11 @@ resource "google_project_iam_member" "gke_service_agent_host_perms" {
 
 resource "google_container_cluster" "apps" {
   depends_on = [
+    google_project_service.host_apis,
     google_project_service.apps_apis,
     google_project_iam_member.gke_service_agent_perms,
-    google_project_iam_member.gke_service_agent_host_perms
+    google_project_iam_member.gke_service_agent_host_perms,
+    google_compute_route.main_default_internet_gateway
   ]
 
   description                 = "GKE Cluster for personal projects"
