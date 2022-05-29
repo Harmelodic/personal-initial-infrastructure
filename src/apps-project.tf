@@ -15,6 +15,7 @@ resource "google_project_service" "apps_apis" {
   for_each = toset([
     "cloudbilling.googleapis.com", # Required for hooking project to Cloud Billing
     "container.googleapis.com", # Required for using Google Kubernetes Engine
+    "dns.googleapis.com", # Required for managing DNS zones
     "iam.googleapis.com", # Required for handling IAM permissions
   ])
 
@@ -32,7 +33,6 @@ resource "google_compute_shared_vpc_service_project" "apps" {
 resource "google_project_iam_member" "automation_apps_project_perms" {
   for_each = toset([
     "roles/billing.projectManager",
-    "roles/editor",
   ])
 
   member  = "serviceAccount:${data.google_service_account.automation.email}"
