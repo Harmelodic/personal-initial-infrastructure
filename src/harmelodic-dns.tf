@@ -12,6 +12,7 @@ resource "google_dns_managed_zone" "harmelodic_com" {
   description = "Managed Zone for ${var.harmelodic_domain_name}"
   dns_name    = var.harmelodic_domain_name
   name        = var.harmelodic_domain_name
+  project     = google_project.host.project_id
 
   labels = {
     environment = terraform.workspace
