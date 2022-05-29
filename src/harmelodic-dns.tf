@@ -6,7 +6,7 @@ variable "harmelodic_domain_name" {
 
 resource "google_dns_managed_zone" "harmelodic_com" {
   depends_on = [
-    google_project_service.apps_apis
+    google_project_service.host_apis
   ]
 
   description = "Managed Zone for ${var.harmelodic_domain_name}"
