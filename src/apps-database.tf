@@ -1,17 +1,15 @@
-#variable "apps_db_tier" {
-#  default     = "db-n1-standard-1"
-#  description = "Type of DB machine"
-#  sensitive   = true
-#  type        = string
-#}
-#
-#variable "apps_db_disk_size" {
-#  default     = 10
-#  description = "Size of DB storage in GB"
-#  sensitive   = true
-#  type        = number
-#}
-#
+variable "apps_db_tier" {
+  description = "Type of DB machine"
+  sensitive   = true
+  type        = string
+}
+
+variable "apps_db_disk_size" {
+  description = "Size of DB storage in GB"
+  sensitive   = true
+  type        = number
+}
+
 #resource "google_sql_database_instance" "instance" {
 #  name                = "apps"
 #  region              = var.region
