@@ -14,6 +14,10 @@ resource "google_dns_managed_zone" "harmelodic_com" {
   name        = replace(var.apps_harmelodic_dns_name, ".", "-")
   project     = google_project.host.project_id
 
+  dnssec_config {
+    state = "on"
+  }
+
   labels = {
     environment = terraform.workspace
   }
