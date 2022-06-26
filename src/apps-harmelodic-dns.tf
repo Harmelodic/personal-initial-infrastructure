@@ -22,6 +22,7 @@ resource "google_dns_managed_zone" "harmelodic_com" {
 resource "google_dns_record_set" "harmelodic_com_a" {
   managed_zone = google_dns_managed_zone.harmelodic_com.id
   name         = var.apps_harmelodic_dns_name
+  project      = google_project.host.project_id
   type         = "A"
 
   rrdatas = [
@@ -35,6 +36,7 @@ resource "google_dns_record_set" "harmelodic_com_a" {
 resource "google_dns_record_set" "harmelodic_com_aaaa" {
   managed_zone = google_dns_managed_zone.harmelodic_com.id
   name         = var.apps_harmelodic_dns_name
+  project      = google_project.host.project_id
   type         = "AAAA"
 
   rrdatas = [
@@ -48,6 +50,7 @@ resource "google_dns_record_set" "harmelodic_com_aaaa" {
 resource "google_dns_record_set" "harmelodic_com_mx" {
   managed_zone = google_dns_managed_zone.harmelodic_com.id
   name         = var.apps_harmelodic_dns_name
+  project      = google_project.host.project_id
   type         = "MX"
 
   rrdatas = [
@@ -61,8 +64,10 @@ resource "google_dns_record_set" "harmelodic_com_mx" {
 
 resource "google_dns_record_set" "harmelodic_com_txt" {
   managed_zone = google_dns_managed_zone.harmelodic_com.id
-  name = var.apps_harmelodic_dns_name
-  type = "TXT"
+  name         = var.apps_harmelodic_dns_name
+  project      = google_project.host.project_id
+  type         = "TXT"
+
   rrdatas = [
     "google-site-verification=jXVba9WLVzprbkW4EpS3vtWL5-2YH03AwSc8sprMfSU",
     "keybase-site-verification=sDm605nNkmQuRsuciUxr9KmDkMgBVUKD5Ea38C_8L4w"
