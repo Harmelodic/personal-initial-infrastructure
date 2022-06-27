@@ -15,7 +15,18 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "2.11.0"
     }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "2.6.0"
+    }
   }
+}
+
+variable "region" {
+  default     = "europe-north1"
+  description = "GCP Region"
+  sensitive   = true
+  type        = string
 }
 
 provider "google" {
@@ -30,9 +41,10 @@ provider "kubernetes" {
   token                  = data.google_client_config.current.access_token
 }
 
-variable "region" {
-  default     = "europe-north1"
-  description = "GCP Region"
-  sensitive   = true
-  type        = string
+provider "helm" {
+  kubernetes {
+    host                   = "https://${google_container_cluster.apps.endpoint}"
+    cluster_ca_certificate = base64decode(google_container_cluster.apps.master_auth.0.cluster_ca_certificate)
+    token                  = data.google_client_config.current.access_token
+  }
 }
