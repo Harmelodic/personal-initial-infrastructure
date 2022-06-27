@@ -16,9 +16,9 @@ resource "helm_release" "argo_cd" {
   version    = "4.9.8"
 }
 
-resource "kubernetes_secret" "example_apps_repo" {
+resource "kubernetes_secret" "personal_apps_gitops_repo" {
   metadata {
-    name      = "example-apps-repo"
+    name      = "personal-apps-gitops-repo"
     namespace = kubernetes_namespace.argo_cd.metadata.0.name
 
     labels = {
@@ -29,6 +29,6 @@ resource "kubernetes_secret" "example_apps_repo" {
 
   data = {
     type = "git"
-    url  = "https://github.com/argoproj/argocd-example-apps.git"
+    url  = "https://github.com/Harmelodic/personal-apps-gitops.git"
   }
 }
