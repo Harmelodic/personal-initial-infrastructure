@@ -22,13 +22,13 @@ resource "kubernetes_secret" "example_apps_repo" {
     namespace = kubernetes_namespace.argo_cd.metadata.0.name
 
     labels = {
-      argocd.argoproj.io/secret-type = "repository"
-      environment                    = terraform.workspace
+      "argocd.argoproj.io/secret-type" = "repository"
+      environment                      = terraform.workspace
     }
   }
 
   data = {
     type = "git"
-    url = "https://github.com/argoproj/argocd-example-apps.git"
+    url  = "https://github.com/argoproj/argocd-example-apps.git"
   }
 }
