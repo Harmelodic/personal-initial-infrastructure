@@ -15,3 +15,20 @@ resource "helm_release" "argo_cd" {
   repository = "https://argoproj.github.io/argo-helm"
   version    = "4.9.8"
 }
+
+resource "kubernetes_secret" "example_apps_repo" {
+  metadata {
+    name      = "example-apps-repo"
+    namespace = kubernetes_namespace.argo_cd.metadata.0.name
+
+    labels = {
+      argocd.argoproj.io/secret-type = "repository"
+      environment                    = terraform.workspace
+    }
+  }
+
+  data = {
+    type = "git"
+    url = "https://github.com/argoproj/argocd-example-apps.git"
+  }
+}
