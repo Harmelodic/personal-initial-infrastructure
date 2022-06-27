@@ -16,19 +16,6 @@ resource "helm_release" "argo_cd" {
   version    = "4.9.8"
 }
 
-resource "kubernetes_secret" "personal_apps_gitops_repo" {
-  metadata {
-    name      = "personal-apps-gitops-repo"
-    namespace = kubernetes_namespace.argo_cd.metadata.0.name
-
-    labels = {
-      "argocd.argoproj.io/secret-type" = "repository"
-      environment                      = terraform.workspace
-    }
-  }
-
-  data = {
-    type = "git"
-    url  = "https://github.com/Harmelodic/personal-apps-gitops.git"
-  }
+resource "kubernetes_manifest" "apps_gitops_argo_app" {
+  manifest = yamldecode(file("./apps-argo-cd-gitops-app.yaml"))
 }
