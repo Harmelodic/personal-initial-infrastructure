@@ -53,6 +53,18 @@ resource "google_dns_record_set" "harmelodic_com_aaaa" {
   ]
 }
 
+resource "google_dns_record_set" "harmelodic_com_cname" {
+  managed_zone = google_dns_managed_zone.harmelodic_com.name
+  name         = "*.${var.apps_harmelodic_dns_name}."
+  project      = google_project.host.project_id
+  ttl          = 300
+  type         = "CNAME"
+
+  rrdatas = [
+    var.apps_harmelodic_dns_name
+  ]
+}
+
 resource "google_dns_record_set" "harmelodic_com_mx" {
   managed_zone = google_dns_managed_zone.harmelodic_com.name
   name         = "${var.apps_harmelodic_dns_name}."
