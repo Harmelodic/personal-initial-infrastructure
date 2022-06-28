@@ -61,7 +61,7 @@ resource "google_dns_record_set" "harmelodic_com_cname" {
   type         = "CNAME"
 
   rrdatas = [
-    var.apps_harmelodic_dns_name
+    "${var.apps_harmelodic_dns_name}."
   ]
 }
 
