@@ -6,7 +6,7 @@ resource "random_integer" "apps_project_suffix" {
 resource "google_project" "apps" {
   auto_create_network = false
   billing_account     = data.google_billing_account.my_billing_account.id
-  folder_id           = google_folder.personal.id
+  folder_id           = google_folder.personal_env.id
   name                = "personal-${terraform.workspace}-apps"
   project_id          = "personal-${terraform.workspace}-apps-${random_integer.apps_project_suffix.result}"
 }
