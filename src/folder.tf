@@ -3,7 +3,7 @@ resource "google_folder" "personal" {
   parent       = data.google_organization.harmelodic_com.id
 }
 
-resource "google_folder" "personal" {
+resource "google_folder" "personal_env" {
   display_name = terraform.workspace
   parent       = google_folder.personal.id
 }
