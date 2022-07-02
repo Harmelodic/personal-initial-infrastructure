@@ -27,7 +27,6 @@ resource "kubernetes_service_account" "cert_manager" {
 
 resource "google_service_account_iam_member" "cert_manager_workload_identity" {
   member             = "serviceAccount:${google_project.apps.project_id}.svc.id.goog[${kubernetes_service_account.cert_manager.metadata.0.namespace}/${kubernetes_service_account.cert_manager.metadata.0.name}]"
-  project            = google_project.apps.project_id
   role               = "roles/iam.workloadIdentityUser"
   service_account_id = google_service_account.cert_manager.name
 }
