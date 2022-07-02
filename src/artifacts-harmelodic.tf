@@ -14,5 +14,5 @@ resource "google_artifact_registry_repository_iam_member" "gke_node_service_agen
   location   = google_artifact_registry_repository.harmelodic_docker.location
   repository = google_artifact_registry_repository.harmelodic_docker.name
   role       = "roles/artifactregistry.reader"
-  member     = "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com"
+  member     = "serviceAccount:${google_project.apps.number}-compute@developer.gserviceaccount.com"
 }
