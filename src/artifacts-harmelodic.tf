@@ -13,7 +13,8 @@ resource "google_artifact_registry_repository_iam_member" "gke_service_account" 
     "serviceAccount:${google_project.apps.number}@cloudservices.gserviceaccount.com",
     "serviceAccount:${module.harmelodic_website_workload.google_service_account.email}",
     "serviceAccount:${google_project.apps.number}-compute@developer.gserviceaccount.com",
-    "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com"
+    "serviceAccount:service-${google_project.apps.number}@container-engine-robot.iam.gserviceaccount.com",
+    "serviceAccount:service-${google_project.apps.number}@gcp-sa-gkenode.iam.gserviceaccount.com"
   ])
 
   provider   = google-beta
