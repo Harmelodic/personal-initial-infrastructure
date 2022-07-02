@@ -11,6 +11,10 @@ terraform {
       source  = "hashicorp/google"
       version = "4.27.0"
     }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "4.27.0"
+    }
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "2.12.0"
@@ -30,6 +34,10 @@ variable "region" {
 }
 
 provider "google" {
+  region = var.region
+}
+
+provider "google-beta" {
   region = var.region
 }
 
