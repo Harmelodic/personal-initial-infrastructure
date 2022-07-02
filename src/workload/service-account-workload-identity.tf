@@ -15,7 +15,7 @@ variable "project_id" {
 
 resource "google_service_account" "workload" {
   project    = var.project_id
-  account_id = var.name
+  account_id = "${var.namespace}-${var.name}"
 }
 
 resource "kubernetes_service_account" "workload" {
