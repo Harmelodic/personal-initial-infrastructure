@@ -31,25 +31,7 @@ resource "google_dns_record_set" "harmelodic_com_a" {
   type         = "A"
 
   rrdatas = [
-    "216.239.32.21",
-    "216.239.34.21",
-    "216.239.36.21",
-    "216.239.38.21"
-  ]
-}
-
-resource "google_dns_record_set" "harmelodic_com_aaaa" {
-  managed_zone = google_dns_managed_zone.harmelodic_com.name
-  name         = "${var.apps_harmelodic_dns_name}."
-  project      = google_project.host.project_id
-  ttl          = 300
-  type         = "AAAA"
-
-  rrdatas = [
-    "2001:4860:4802:32::15",
-    "2001:4860:4802:34::15",
-    "2001:4860:4802:36::15",
-    "2001:4860:4802:38::15"
+    "34.88.47.19",
   ]
 }
 
