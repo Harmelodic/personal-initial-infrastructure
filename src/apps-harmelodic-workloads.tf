@@ -13,8 +13,9 @@ module "harmelodic_website_workload" {
 
 resource "google_artifact_registry_repository_iam_member" "harmelodic_website" {
   provider   = google-beta
-  project    = google_project.artifacts.project_id
-  repository = "harmelodic" # google_artifact_registry_repository.harmelodic_docker.name
+  project    = google_artifact_registry_repository.harmelodic_docker.project
+  location   = google_artifact_registry_repository.harmelodic_docker.location
+  repository = google_artifact_registry_repository.harmelodic_docker.name
   role       = "roles/viewer"
   member     = "serviceAccount:${module.harmelodic_website_workload.google_service_account.email}"
 }
