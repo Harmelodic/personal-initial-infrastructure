@@ -20,7 +20,7 @@ resource "kubernetes_service_account" "workload" {
 }
 
 resource "google_service_account_iam_member" "cert_manager_workload_identity" {
-  member = join([
+  member = concat([
     "serviceAccount:",
     data.google_project.target.project_id,
     ".svc.id.goog[",
