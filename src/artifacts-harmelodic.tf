@@ -11,7 +11,8 @@ resource "google_artifact_registry_repository" "harmelodic_docker" {
 resource "google_artifact_registry_repository_iam_member" "gke_service_account" {
   for_each = toset([
     "serviceAccount:${google_project.apps.number}@cloudservices.gserviceaccount.com",
-    "serviceAccount:${module.harmelodic_website_workload.google_service_account.email}"
+    "serviceAccount:${module.harmelodic_website_workload.google_service_account.email}",
+    "serviceAccount:${google_project.apps.number}-compute@developer.gserviceaccount.com"
   ])
 
   provider   = google-beta
