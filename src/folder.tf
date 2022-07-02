@@ -1,6 +1,11 @@
 resource "google_folder" "personal" {
-  display_name = "Personal - ${title(terraform.workspace)}"
+  display_name = "Personal"
   parent       = data.google_organization.harmelodic_com.id
+}
+
+resource "google_folder" "personal" {
+  display_name = terraform.workspace
+  parent       = google_folder.personal.id
 }
 
 resource "google_folder_iam_member" "automation_folder_perms" {
