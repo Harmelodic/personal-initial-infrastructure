@@ -31,7 +31,7 @@ resource "google_dns_record_set" "harmelodic_com_a" {
   type         = "A"
 
   rrdatas = [
-    "34.88.47.19",
+    "34.88.154.67",
   ]
 }
 
