@@ -1,4 +1,4 @@
-# personal-infrastructure
+# personal-base-infrastructure
 
 Infrastructure code for personal projects
 
