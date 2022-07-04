@@ -22,13 +22,13 @@ resource "google_project_service" "artifacts_apis" {
   service                    = each.key
 }
 
-resource "google_project_iam_member" "automation_artifacts_project_perms" {
+resource "google_project_iam_member" "personal_artifacts_project_automation_perms" {
   for_each = toset([
     "roles/billing.projectManager",
     "roles/owner",
   ])
 
   member  = "serviceAccount:${data.google_service_account.automation.email}"
-  project = google_project.apps.project_id
+  project = google_project.artifacts.project_id
   role    = each.key
 }

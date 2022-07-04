@@ -21,5 +21,5 @@ jobs:
           service_account: automation@automation-220928.iam.gserviceaccount.com
       - run: terraform -chdir=src init -upgrade
       - run: terraform -chdir=src validate
-      - run: terraform -chdir=src workspace new prod || terraform -chdir=src workspace select prod
-      - run: terraform -chdir=src apply -var-file="prod.tfvars" -auto-approve
+      - run: terraform -chdir=src select default
+      - run: terraform -chdir=src apply -auto-approve

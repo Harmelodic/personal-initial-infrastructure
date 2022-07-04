@@ -3,11 +3,6 @@ resource "google_folder" "personal" {
   parent       = data.google_organization.harmelodic_com.id
 }
 
-resource "google_folder" "personal_env" {
-  display_name = terraform.workspace
-  parent       = google_folder.personal.id
-}
-
 resource "google_folder_iam_member" "automation_folder_perms" {
   for_each = toset([
     "roles/compute.xpnAdmin",
