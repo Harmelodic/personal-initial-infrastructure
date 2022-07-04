@@ -3,7 +3,7 @@ terraform {
 
   backend "gcs" {
     bucket = "harmelodic-tfstate"
-    prefix = "personal-infrastructure"
+    prefix = "personal-base-infrastructure"
   }
 
   required_providers {
