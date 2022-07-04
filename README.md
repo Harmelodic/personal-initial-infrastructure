@@ -4,5 +4,5 @@ Base infrastructure required for my Personal projects
 
 Creates:
 
-- Folders
-- 
+- Folder
+- Artifact Project (since artifacts are cross-environment)
