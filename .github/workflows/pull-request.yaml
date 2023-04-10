@@ -1,12 +1,13 @@
-name: CI main
+name: pull-request
+
 on:
-  push:
+  pull_request:
     branches:
       - main
   workflow_dispatch: {}
 
 jobs:
-  deploy:
+  validate:
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -14,12 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: hashicorp/setup-terraform@v2
-      - name: 'Authenticate to Google Cloud'
-        uses: google-github-actions/auth@v1.0.0
+      - uses: google-github-actions/auth@v1.0.0
         with:
           workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/automation/providers/github
           service_account: automation@automation-220928.iam.gserviceaccount.com
       - run: terraform -chdir=src init -upgrade
       - run: terraform -chdir=src validate
-      - run: terraform -chdir=src workspace select default
-      - run: terraform -chdir=src apply -auto-approve
