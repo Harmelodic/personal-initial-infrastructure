@@ -7,7 +7,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  deploy:
+  terraform-apply:
     permissions:
       contents: 'read'
       id-token: 'write'

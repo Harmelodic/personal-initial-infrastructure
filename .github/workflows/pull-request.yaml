@@ -7,7 +7,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  validate:
+  terraform-validate:
     permissions:
       contents: 'read'
       id-token: 'write'
