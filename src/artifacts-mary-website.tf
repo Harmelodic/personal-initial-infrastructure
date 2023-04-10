@@ -1,6 +1,4 @@
 resource "google_artifact_registry_repository" "mary_website_docker" {
-  provider = google-beta
-
   description   = "Docker repository for Mary Website images"
   format        = "DOCKER"
   location      = "asia-southeast1"
