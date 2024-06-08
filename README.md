@@ -1,6 +1,6 @@
-# personal-base-infrastructure
+# personal-initial-infrastructure
 
-Base infrastructure required for my Personal projects
+Initial, pre-environment infrastructure for Personal projects
 
 Creates:
 
