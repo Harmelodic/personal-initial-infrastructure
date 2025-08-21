@@ -31,8 +31,8 @@ jobs:
       contents: 'read'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: hashicorp/setup-terraform@v3
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
       - run: terraform -chdir=src fmt -recursive && git diff --exit-code
   terraform-validate:
     permissions:
@@ -40,8 +40,8 @@ jobs:
       id-token: 'write' # Fetch OIDC Token for GCP Auth
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: hashicorp/setup-terraform@v3
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3
       - uses: google-github-actions/auth@v2.1.12
         with:
           workload_identity_provider: projects/401363556022/locations/global/workloadIdentityPools/github/providers/github-oidc
