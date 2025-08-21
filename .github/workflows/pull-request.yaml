@@ -33,7 +33,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: hashicorp/setup-terraform@v3
-      - run: terraform -chdir=src init -upgrade
       - run: terraform -chdir=src fmt -recursive && git diff --exit-code
   terraform-validate:
     permissions:
