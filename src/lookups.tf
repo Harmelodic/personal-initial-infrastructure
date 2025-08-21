@@ -7,10 +7,6 @@ data "google_billing_account" "my_billing_account" {
   open         = true
 }
 
-data "google_folders" "organisation_folders" {
-  parent_id = data.google_organization.harmelodic_com.id
-}
-
 data "google_projects" "automation_lookup" {
   filter = "name:automation lifecycleState:ACTIVE"
 }
