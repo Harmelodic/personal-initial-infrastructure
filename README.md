@@ -1,6 +1,6 @@
 # personal-initial-infrastructure
 
-Initial, pre-environment infrastructure for Personal projects
+Initial, pre-environment infrastructure for Personal projects.
 
 Creates:
 
