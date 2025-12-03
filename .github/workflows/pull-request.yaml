@@ -9,9 +9,9 @@ on:
 
 jobs:
   verify-github-workflows:
-    uses: harmelodic/workflows/.github/workflows/verify-github-workflows.yaml@205de59141634aacef23ca5df55f67f4657bf913
+    uses: harmelodic/workflows/.github/workflows/verify-github-workflows.yaml@ec7c612da71abf16c3e9ce28fe239b9e0089d616
 
   verify-terraform:
-    uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@205de59141634aacef23ca5df55f67f4657bf913
+    uses: harmelodic/workflows/.github/workflows/verify-terraform.yaml@ec7c612da71abf16c3e9ce28fe239b9e0089d616
     with:
       directory: src
